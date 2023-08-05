@@ -1,0 +1,35 @@
+<!-- cart.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Florence Shop - Shopping Cart</title>
+</head>
+<body>
+  <h1>Shopping Cart</h1>
+
+  <div id="cart-items">
+    <!-- JavaScript code will add the cart items here -->
+  </div>
+
+  <h2>Total: $<span id="cart-total"></span></h2>
+
+  <!-- Add a form to modify the quantity of items -->
+  <form id="update-cart-form">
+    <label for="quantity">Modify Quantity:</label>
+    <input type="number" id="quantity" name="quantity" min="1">
+    <input type="submit" value="Update">
+  </form>
+
+  <!-- Add a checkout button -->
+  <button id="checkout-button">Checkout</button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="cart.js"> </script>
+  <script src="shopping.js"></script>
+
+</body>
+</html>
+
