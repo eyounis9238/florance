@@ -1,46 +1,48 @@
-$(document).ready(function () {
-  // Function to load cart items from localStorage
-  function loadCartItems() {
-    const cartItems = localStorage.getItem('cartItems');
-    return cartItems ? JSON.parse(cartItems) : [];
-  }
+// call the flower products
+const flowerItems = document.querySelectorAll('.flower-item');
 
-  // Function to save cart items to localStorage
-  function saveCartItems(cartItems) {
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  }
+// add product to cart 
+function addToCart(event) {
+  // Get the product ID
+  const productId = event.target.dataset.productId;
 
-  // Add item to the cart
-  $('.add-to-cart-button').click(function () {
-    const productName = $(this).data('product-name');
-    const productPrice = parseFloat($(this).data('product-price'));
-    const productId = parseInt($(this).data('product-id'));
+  // Find the corresponding flower item in the flowerItems list
+  const flowerItem = Array.from(flowerItems).find(item => item.querySelector('.add-to-cart-button').dataset.productId === productId);
 
-    // Load existing cart items from localStorage
-    let cartItems = loadCartItems();
+  // Get the flower name, price, and rating
+  const flowerName = flowerItem.querySelector('h3').textContent;
+  const flowerPrice = flowerItem.querySelector('p:nth-of-type(1)').textContent; // Get the first <p> element for price
+  const flowerRating = flowerItem.querySelector('p:nth-of-type(2)').textContent; // Get the second <p> element for rating
 
-    // Check if the item is already in the cart
-    let found = false;
-    cartItems.forEach(item => {
-      if (item.productId === productId) {
-        item.quantity++;
-        found = true;
-      }
-    });
+  // Send the new item to the cart
+  const cartItem = {
+    id: productId,
+    name: flowerName,
+    price: flowerPrice,
+    rating: flowerRating
+  };
 
-    // If the item is not in the cart, add it
-    if (!found) {
-      cartItems.push({
-        productId,
-        productName,
-        productPrice,
-        quantity: 1
-      });
-    }
+  // Store the product in local storage
+  addToLocalStorage(cartItem);
 
-    // Save updated cart items to localStorage
-    saveCartItems(cartItems);
-  });
+  alert(`${flowerName} has been added to the cart!`);
+}
 
-  // ... (other code remains the same)
+
+
+function addToLocalStorage(item) {
+
+  let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+  // Add the new item to the cart items
+  cartItems.push(item);
+
+  // 
+  localStorage.setItem('cartItems', JSON.stringify(cartItems));
+}
+
+// click event listeners to the "Add to Cart" buttons
+flowerItems.forEach(item => {
+  const addToCartButton = item.querySelector('.add-to-cart-button');
+  addToCartButton.addEventListener('click', addToCart);
 });

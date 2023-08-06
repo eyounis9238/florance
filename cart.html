@@ -1,35 +1,131 @@
-<!-- cart.html -->
-
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Florence Shop - Shopping Cart</title>
-</head>
-<body>
-  <h1>Shopping Cart</h1>
+<html>
+  <head>
+    <title>Cart Page</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+        margin: 0;
+        padding: 0;
+      }
 
-  <div id="cart-items">
-    <!-- JavaScript code will add the cart items here -->
-  </div>
+      header {
+        background-color: #ef84b3;
+        color: #fff;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
 
-  <h2>Total: $<span id="cart-total"></span></h2>
+      h1 {
+        margin: 0;
+        font-size: 24px;
+      }
 
-  <!-- Add a form to modify the quantity of items -->
-  <form id="update-cart-form">
-    <label for="quantity">Modify Quantity:</label>
-    <input type="number" id="quantity" name="quantity" min="1">
-    <input type="submit" value="Update">
-  </form>
+      .back-button {
+        color: #fff;
+        font-size: 18px;
+        text-decoration: none;
+      }
 
-  <!-- Add a checkout button -->
-  <button id="checkout-button">Checkout</button>
+      #content {
+        padding: 20px;
+      }
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="cart.js"> </script>
-  <script src="shopping.js"></script>
+      #cart-list {
+        margin-top: 20px;
+        overflow-x: auto; /* Enable horizontal scrolling if needed */
+      }
 
-</body>
+      #cart-list table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid #ddd; /* Add a border around the table */
+      }
+
+      #cart-list th,
+      #cart-list td {
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+      }
+
+      #cart-list th {
+        background-color: #ef84b3;
+        color: #fff;
+      }
+
+      #cart-list tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      #cart-list tr:hover {
+        background-color: #f1f1f1;
+      }
+
+      #cart-total {
+        text-align: right;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+
+      #checkout-button {
+        background-color: #ef84b3;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 20px;
+      }
+
+      #checkout-button:hover {
+        background-color: #c95b88;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>Cart</h1>
+      <a href="shopping.html" class="back-button"
+        ><i class="fas fa-arrow-left"></i
+      ></a>
+    </header>
+
+    <div id="content">
+      <h2>Your Cart</h2>
+      <div id="cart-list">
+        <table>
+          <tr>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Rating</th>
+          </tr>
+        </table>
+      </div>
+      <p id="cart-total"></p>
+      <button id="checkout-button">Checkout</button>
+    </div>
+
+    <script src="cart.js"></script>
+
+    <script>
+      // Add an event listener to the checkout button
+      document
+        .getElementById("checkout-button")
+        .addEventListener("click", function () {
+          // Redirect the user to the payment gateway page when clicked
+          window.location.href = "payment_gateway.html"; // Replace 'payment_gateway.html' with the URL of your payment gateway page.
+        });
+    </script>
+  </body>
 </html>
-

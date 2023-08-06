@@ -1,92 +1,112 @@
-$(document).ready(function () {
-  // Function to update the cart items and total price
-  function updateCart() {
-    // Load cart items from localStorage
-    let cartItems = loadCartItems();
+// Sample cartItems data
+const cartItems = [
+  {
+    name: "Rose",
+    price: "$10",
+    rating: "4.5",
+  },
+  {
+    name: "Lily",
+    price: "$8",
+    rating: "4",
+  },
+  {
+    name: "Tulip",
+    price: "$6",
+    rating: "4.2",
+  },
+  {
+    name: "Orchid",
+    price: "$7",
+    rating: "4.5",
+  },
+  {
+    name: "Carnation",
+    price: "$7",
+    rating: "4.8",
+  },
+  {
+    name: "Dahlia",
+    price: "$8",
+    rating: "5",
+  },
+  {
+    name: "Daisy",
+    price: "$7.5",
+    rating: "4",
+  },
+  {
+    name: "Lavender",
+    price: "$8",
+    rating: "4.5",
+  },
+  {
+    name: "Buttercup",
+    price: "$10",
+    rating: "4.2",
+  },
+  {
+    name: "Marigold",
+    price: "$10",
+    rating: "4.7",
+  },
 
-    let total = 0;
-    const cartItemsDiv = $('#cart-items');
-    cartItemsDiv.empty();
+];
 
-    cartItems.forEach(item => {
-      const itemTotal = item.productPrice * item.quantity;
-      total += itemTotal;
+// Function to calculate the total price of the cart
+function calculateTotal() {
+  let total = 0;
 
-      cartItemsDiv.append(`<div class="cart-item">
-        <h3>${item.productName}</h3>
-        <p>Price: $${item.productPrice.toFixed(2)}</p>
-        <p>Quantity: ${item.quantity}</p>
-        <p>Total: $${itemTotal.toFixed(2)}</p>
-        <button class="delete-button" data-product-id="${item.productId}">Delete</button>
-        <button class="update-button" data-product-id="${item.productId}">Update</button>
-      </div>`);
-    });
-
-    $('#cart-total').text(total.toFixed(2));
-  }
-
-  // Function to load cart items from localStorage
-  function loadCartItems() {
-    const cartItems = localStorage.getItem('cartItems');
-    return cartItems ? JSON.parse(cartItems) : [];
-  }
-
-  // Function to save cart items to localStorage
-  function saveCartItems(cartItems) {
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  }
-
-  // Handle the form submission to update the quantity
-  $('#update-cart-form').submit(function (event) {
-    event.preventDefault();
-    const newQuantity = parseInt($('#quantity').val());
-    if (!isNaN(newQuantity) && newQuantity > 0) {
-      let cartItems = loadCartItems();
-
-      const productIdToUpdate = 2; // Change this to the appropriate product ID
-      const itemToUpdate = cartItems.find(item => item.productId === productIdToUpdate);
-      if (itemToUpdate) {
-        itemToUpdate.quantity = newQuantity;
-        saveCartItems(cartItems);
-        updateCart();
-      }
-    }
+  cartItems.forEach(item => {
+    const price = parseFloat(item.price.substring(1)); // Remove the dollar sign and parse the price as a float
+    total += price;
   });
 
-  // Handle the checkout button click
-  $('#checkout-button').click(function () {
-    // Your checkout process logic goes here...
-    // For example, you can redirect to a checkout page, process the payment, etc.
-    alert('Checkout process placeholder. Implement your own logic here.');
+  return total.toFixed(2);
+}
+
+// Show the cart items in the table format
+function renderCartItems() {
+  const cartList = document.getElementById('cart-list');
+
+  // Clear the existing cart items
+  cartList.innerHTML = '';
+
+  // Create the table header row
+  const tableHeader = document.createElement('tr');
+  tableHeader.innerHTML = '<th>Product Name</th><th>Price</th><th>Rating</th>';
+  cartList.appendChild(tableHeader);
+
+  // Show the cart items in the table
+  cartItems.forEach(item => {
+    const cartItemRow = document.createElement('tr');
+    cartItemRow.innerHTML = `<td>${item.name}</td><td>${item.price}</td><td>${item.rating}</td>`;
+    cartList.appendChild(cartItemRow);
   });
 
-  // Handle the delete button click
-  $(document).on('click', '.delete-button', function () {
-    const productIdToDelete = parseInt($(this).data('product-id'));
-    let cartItems = loadCartItems();
+  // Calculate the total price
+  const cartTotalElement = document.getElementById('cart-total');
+  cartTotalElement.textContent = `Total: $${calculateTotal()}`;
+}
 
-    const updatedCartItems = cartItems.filter(item => item.productId !== productIdToDelete);
-    saveCartItems(updatedCartItems);
-    updateCart();
-  });
+// Function to handle the checkout process
+function checkout() {
+  // Empty local storage
+  localStorage.removeItem('cartItems');
 
-  // Handle the update button click
-  $(document).on('click', '.update-button', function () {
-    const productIdToUpdate = parseInt($(this).data('product-id'));
-    const newQuantity = parseInt(prompt('Enter the new quantity:', '1'));
+  // Clear the cart items array
+  cartItems = [];
 
-    if (!isNaN(newQuantity) && newQuantity > 0) {
-      let cartItems = loadCartItems();
+  // Empty cart and update total
+  renderCartItems();
 
-      const itemToUpdate = cartItems.find(item => item.productId === productIdToUpdate);
-      if (itemToUpdate) {
-        itemToUpdate.quantity = newQuantity;
-        saveCartItems(cartItems);
-        updateCart();
-      }
-    }
-  });
+  // Show the checkout message
+  alert('Thank you for your purchase! Your order has been placed.');
+}
 
-  // Initial update of cart items and total price on page load
-  updateCart();
-});
+// Initial cart items
+renderCartItems();
+
+// Attach click event listener to the checkout button
+const checkoutButton = document.getElementById('checkout-button');
+checkoutButton.addEventListener('click', checkout);
