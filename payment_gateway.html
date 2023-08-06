@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Payment Gateway</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+        margin: 0;
+        padding: 0;
+      }
+
+      header {
+        background-color: #ef84b3;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 24px;
+      }
+
+      .payment-form {
+        max-width: 500px;
+        margin: 30px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .payment-form label {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      .payment-form input[type="text"],
+      .payment-form input[type="number"],
+      .payment-form select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+      }
+
+      .payment-form button {
+        background-color: #ef84b3;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 20px;
+      }
+
+      .payment-form button:hover {
+        background-color: #ef84b3;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>Payment Gateway</h1>
+    </header>
+
+    <div class="payment-form">
+      <form>
+        <label for="card-number">Card Number</label>
+        <input
+          type="text"
+          id="card-number"
+          name="card-number"
+          placeholder="Enter your card number"
+          required
+        />
+
+        <label for="expiry-date">Expiry Date</label>
+        <input
+          type="text"
+          id="expiry-date"
+          name="expiry-date"
+          placeholder="MM/YY"
+          required
+        />
+
+        <label for="cvv">CVV</label>
+        <input type="number" id="cvv" name="cvv" placeholder="123" required />
+
+        <label for="card-holder-name">Cardholder Name</label>
+        <input
+          type="text"
+          id="card-holder-name"
+          name="card-holder-name"
+          placeholder="Enter cardholder name"
+          required
+        />
+
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Enter your email"
+          required
+        />
+
+        <button type="submit">Pay Now</button>
+      </form>
+    </div>
+    <div class="message-container"></div>
+    <script>
+      // Function to handle the form submission
+      function handlePayment(event) {
+        event.preventDefault(); // Prevent form submission to keep it on the same page
+
+        // Get form input values
+        const cardNumber = document.getElementById("card-number").value;
+        const expiryDate = document.getElementById("expiry-date").value;
+        const cvv = document.getElementById("cvv").value;
+        const cardHolderName =
+          document.getElementById("card-holder-name").value;
+        const email = document.getElementById("email").value;
+
+        // Simple validation (you can add more advanced validation as needed)
+        if (cardNumber && expiryDate && cvv && cardHolderName && email) {
+          // Display success message
+          displayMessage(
+            "Payment successful! Thank you for your purchase.",
+            "green"
+          );
+        } else {
+          // Display error message
+          displayMessage("Please fill in all the required fields.", "red");
+        }
+      }
+
+      // Function to display messages
+      function displayMessage(message, color) {
+        const messageContainer = document.querySelector(".message-container");
+        messageContainer.innerHTML = `<p style="color: ${color};">${message}</p>`;
+      }
+
+      // Add event listener to the form on submit
+      document.querySelector("form").addEventListener("submit", handlePayment);
+    </script>
+  </body>
+</html>

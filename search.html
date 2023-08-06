@@ -1,87 +1,138 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Search Page</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <!-- Your header content here -->
-  </header>
+  <head>
+    <title>Search Page</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Arial", sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+      }
 
-  <main>
-    <h1>Search Page</h1>
+      /* Add the new CSS for the table */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        overflow: hidden;
+      }
 
-    <form id="search-form">
-      <input type="text" id="search-input" placeholder="Search...">
-      <button type="submit">Search</button>
-    </form>
+      th,
+      td {
+        padding: 12px;
+        text-align: left;
+      }
 
-    <div id="search-results">
-      <!-- Display the search results here -->
-    </div>
-  </main>
+      th {
+        background-color: #ef84b3;
+        color: #fff;
+      }
 
-  <footer>
-    <p>&copy; 2023 Florence Shop. All rights reserved.</p>
-  </footer>
-  <script>
-  // Function to simulate searching for products
-function searchProducts(query) {
-  // Placeholder implementation for demonstration purposes
-  const products = [
-    { id: 1, name: 'lily', price: 10.99 },
-    { id: 2, name: 'tulip', price: 19.99 },
-    { id: 3, name: 'rose', price: 14.99 },
-    { id: 4, name: 'lavender', price: 24.99 },
-    { id: 5, name: 'orchid', price: 29.99 }
-  ];
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
 
-  // Simulate searching and filtering products based on the query
-  const results = products.filter(product =>
-    product.name.toLowerCase().includes(query.toLowerCase())
-  );
+      tr:hover {
+        background-color: #f1f1f1;
+      }
 
-  return results;
-}
+      td img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
 
-// Function to display the search results
-function displaySearchResults(results) {
-  const searchResultsContainer = document.getElementById('search-results');
+      header {
+        background-color: #ef84b3;
+        padding: 20px;
+        text-align: center;
+        color: #fff;
+      }
 
-  // Clear previous results
-  searchResultsContainer.innerHTML = '';
+      main {
+        margin: 20px;
+        text-align: center;
+        font-family: "Arial", sans-serif;
+      }
 
-  // Display each search result
-  results.forEach(result => {
-    const resultElement = document.createElement('div');
-    const resultLink = document.createElement('a');
-    resultLink.href = `shopping.php?id=${result.id}`;
-    resultLink.textContent = result.name;
-    resultElement.appendChild(resultLink);
-    searchResultsContainer.appendChild(resultElement);
-  });
-}
+      h1 {
+        color: #ef84b3;
+        font-size: 36px;
+        margin-bottom: 20px;
+      }
 
-// Function to handle search form submission
-function handleSearchFormSubmit(event) {
-  event.preventDefault();
+      form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+      }
 
-  // Get the search query from the form input
-  const searchInput = document.getElementById('search-input');
-  const query = searchInput.value;
+      #search-input {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px 0 0 5px;
+        outline: none;
+        width: 300px;
+        font-size: 16px;
+      }
 
-  // Perform search and display the results
-  const searchResults = searchProducts(query);
-  displaySearchResults(searchResults);
-}
+      #search-input:focus {
+        border-color: #ef84b3;
+      }
 
-// Get the search form element
-const searchForm = document.getElementById('search-form');
+      #search-button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 0 5px 5px 0;
+        background-color: #ef84b3;
+        color: #fff;
+        cursor: pointer;
+        font-size: 16px;
+      }
 
-// Add event listener to the search form for form submission
-searchForm.addEventListener('submit', handleSearchFormSubmit);
+      #search-button:hover {
+        background-color: #c95b88;
+      }
 
-</script>
-</body>
+      footer {
+        background-color: #f1f1f1;
+        padding: 20px;
+        text-align: center;
+        font-size: 12px;
+        color: #555;
+      }
+
+      /* Continue with your existing CSS styles */
+      /* ... */
+    </style>
+  </head>
+  <body>
+    <header>
+      <!-- Your header content here -->
+    </header>
+
+    <main>
+      <h1>Search Page</h1>
+
+      <form id="search-form">
+        <input type="text" id="search-input" placeholder="Search..." />
+        <button type="submit">Search</button>
+      </form>
+
+      <div class="flower-list">
+        <!-- Display the search results here -->
+      </div>
+    </main>
+
+    <footer>
+      <!-- Your footer content here -->
+    </footer>
+    <script src="search.js"></script>
+  </body>
 </html>
