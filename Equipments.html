@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--<script src="equipmnts.js"></script> don't need it already implemented in this code-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Florence Shop - Gardening Equipment</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Arial", sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    #header {
+      background-color: #ef84b3;
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #logo img {
+      height: 50px;
+    }
+
+    #header-icons a:last-child {
+      margin-left: 0;
+    }
+
+    #navigation {
+      background-color: #ef84b3;
+      padding: 10px 0;
+      text-align: center;
+    }
+
+    #navigation ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    #navigation li {
+      display: inline-block;
+    }
+
+    #navigation li a {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 5px;
+      color: #fff;
+      text-decoration: none;
+      background-color: #ef84b3;
+      border-radius: 20px;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+      transition: background-color 0.3s ease;
+    }
+
+    #navigation li a:hover {
+      background-color: #c95b88;
+      color: #fff;
+    }
+
+    #content {
+      padding: 40px;
+      text-align: center;
+    }
+
+    main {
+      margin: 20px;
+      text-align: center;
+      font-family: "Arial", sans-serif;
+    }
+
+    .icon {
+      display: inline-block;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding-left: 10px;
+      margin-right: 10px;
+      color: white;
+    }
+
+    .product {
+      display: inline-block;
+      margin: 20px;
+    }
+
+    .product p {
+      color: #555;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .product a {
+      text-decoration: none;
+    }
+
+    footer {
+      background-color: #f1f1f1;
+      padding: 20px;
+      text-align: center;
+      font-size: 12px;
+      color: #555;
+    }
+
+    h1 {
+      color: #ef84b3;
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      color: #ef84b3;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .equipment-list {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .equipment-item {
+      width: 200px;
+      margin: 20px;
+      padding: 20px;
+      text-align: center;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .equipment-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .equipment-item img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .equipment-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .equipment-item h3 {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+
+    .equipment-item p {
+      margin-top: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="icon">
+    <a href="cart.html"><i class="fa fa-shopping-cart" style="font-size: 40px; color: white;"></i></a>
+    <a href="search.html"><i class="fa fa-search" style="font-size: 36px; color: white;"></i></a>
+    <a href="login.html"><i class="fa fa-user-o" style="font-size: 36px; color: white;"></i></a>
+  </div>
+
+  <header id="header">
+    <div id="logo"><img src="logo2.png" alt="Logo"></div>
+  </header>
+
+  <nav id="navigation">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shopping.html">Shopping</a></li>
+      <li><a href="Equipments.html">Equipments</a></li>
+      <li><a href="flowers.html">Equipments</a></li>
+      <li><a href="discussion.html">Discussion</a></li>
+      <li><a href="account.html">Account</a></li>
+      <li><a href="About.html">About Us</a></li>
+      <li><a href="contact/contact_us.php">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <div id="content">
+    <h1>Welcome to Florence Shop</h1>
+  </div>
+
+  <main>
+    <section id="gardening-equipment">
+      <h2>Gardening Equipment</h2>
+
+      <div class="equipment-list">
+        <div class="equipment-item" onclick="showEquipmentDetails('equipment1')">
+          <img src="Images/tool_1.jpg" alt="Equipment 1" />
+          <h3>Garden Tools Set, 8 PCS</h3>
+        </div>
+        <div class="equipment-item" onclick="showEquipmentDetails('equipment2')">
+          <img src="Images/tool_2.jpg" alt="Equipment 2" />
+          <h3>Wheel Barrow - 6-ft - Steel - Red</h3>
+        </div>
+        <div class="equipment-item" onclick="showEquipmentDetails('equipment3')">
+            <img src="Images/tool_3.jpg" alt="Equipment 3" />
+            <h3>Garden Tools Set, 5 PCS</h3>
+          </div>
+          <div class="equipment-item" onclick="showEquipmentDetails('equipment4')">
+            <img src="Images/tool_4.jpg" alt="Equipment 3" />
+            <h3>Bamboo Gardening Gloves</h3>
+          </div>
+          <div class="equipment-item" onclick="showEquipmentDetails('equipment5')">
+            <img src="Images/tool_5.jpg" alt="Equipment 3" />
+            <h3>Garden Tools Set, 5 PCS</h3>
+          </div>
+          <div class="equipment-item" onclick="showEquipmentDetails('equipment6')">
+            <img src="Images/tool_6.jpg" alt="Equipment 3" />
+            <h3>Garden Tools Set, 5 PCS</h3>
+          </div>
+        <!-- Will add more items if needed --> 
+      </div>
+    </section>
+
+    <section id="equipment-details">
+      <div id="equipment1-details" style="display: none;">  
+        <h2>About item</h2>
+        <span>GARDEN TOOL SET 8 piece garden tool kits includes pruning shears,
+        garden trowel, transplanter, weeder, cultivator, hand rake,
+        garden gloves and tote bag. Great ideal gifts for women and men
+        DURABLE and STURDY ALUMINUM. These hand tools for heavy duty are
+        made of high quality polished Aluminum, which make the items
+        rust resistant, do not bent and long lasting use
+        ERGONOMIC COMFORTABLE HANDLES The TPR handles are soft,
+        reduce hand pain and fatigue while digging, weeding, planting
+        and cutting. Also there are suitable for large or small sized hands
+        ORGANIZER TOTE BAG Made of 600D oxford fabric, the gardening bag
+        has large internal space with 5 external pockets, so you can carry
+        everything with you
+    </span>
+      </div>
+
+      <div id="equipment2-details" style="display: none;">
+        <h2>About item</h2>
+        <p>Pro yard contractor approved wheel barrows from Toolway
+            are the professionals' choice for quality, longevity
+            and performance. They come equipped with heavy duty
+            steel trays and steel handles making them extremely tough
+            and dependable on any job site.
+            Seamless steel tray with steel handles
+            Narrow front spout
+            Ball bearings for easy rolling
+            100% balanced
+            Flat free - Polyurethane solid tire
+            Increased chemical UV and abrasion resistance
+            Assembly required
+        </p>
+      </div>
+
+      <div id="equipment3-details" style="display: none;">
+        <h2>About item</h2>
+        <p>A hand-held trowel is a must-have for a multitude of everyday
+            gardening tasks, including breaking up clumps of soil,
+            digging small holes, transplanting seedlings and even digging up weeds.
+            Whether you're harvesting fresh produce or cutting back berry bushes, you'll want to equip yourself with a set of sturdy pruning shears.
+            If you're putting plants directly in the ground, spring for a hose,
+            making sure it's long enough to reach from your spigot to your garden.
+            Consider adding a sprayer attachment that will let you control water flow
+            and pressure. If you're purely container gardening, a watering can will suffice look for a lightweight one you can still carry when full.
+        </p>
+      </div>
+      
+      <div id="equipment4-details" style="display: none;">
+        <h2>About item</h2>
+        <p>BAMBOO GLOVES: ADVANCED COMFORT: Most work gloves can get your
+            palms sweaty after just an hour of being outside in the heat. New
+            to the Sleek Garden Series, we introduce our innovative bamboo gloves:
+            the only gloves guaranteed to keep your hands cool in the summer and warm
+            in the winter-and comfortably all year long. Bamboo naturally absorbs
+            perspiration and is made for breathability.
+        </p>
+      </div>
+
+      <div id="equipment5-details" style="display: none;">
+        <h2>About item</h2>
+        <p>. For a 5-gallon bucket, you wil need about 24 ounces of oil. For a smaller bucket, that is
+            about 5 ounces per gallon container. You can use motor, mineral or baby oil.
+
+            2. With a big bucket, it is easiest to add about a third of the sand, then pour in a third
+            of the oil and mix well. Then repeat two more times. The sand will darken with the oil and
+            should be damp, but not moist.
+            
+            3. You can then simply stab your tools into the sand to store them.
+            With tools like trowels or cultivators, I push them in deeply.
+            But with loppers, shears and snips, I only insert the cutting surfaces.
+            Before inserting, I clean the dirt off the tool to keep the sand clean.
+        </p>
+      </div>
+
+      <div id="equipment6-details" style="display: none;">
+        <h2>About item</h2>
+        <p>Keep your hedges and shrubs looking their best through every season.
+            Our shears offer precise cutting and sensible designs to deliver many
+            years of reliable performance. Developed to suit all gardeners' Needs,
+            Garant's Botanica line of gardening tools is specifically designed to
+            comfortably fit all hand sizes. Our pruners and shears feature high-grade
+            materials for better cutting action and healthier plants. Their friction-free,
+            smooth operation helps reduce fatigue and strain, especially during extended gardening tasks.
+        </p>
+      </div>
+      <!-- Will add more items details here if needed -->
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Florence Shop. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function showEquipmentDetails(equipmentId) {
+      // this will hide details
+      var equipmentDetails = document.querySelectorAll("#equipment-details div");
+      for (var i = 0; i < equipmentDetails.length; i++) {
+        equipmentDetails[i].style.display = "none";
+      }
+  
+      // and this will Show the selected equipment details
+      var selectedEquipment = document.getElementById(equipmentId + "-details");
+      selectedEquipment.style.display = "block";
+    }
+  </script>
+</body>
+
+</html>

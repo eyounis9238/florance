@@ -2,7 +2,7 @@
 <html>
 <head>
     <script src="signup.js"></script>
-  <title>Login</title>
+  <title>Sign Up/Login</title>
   <style>
     body {
       margin: 0;
@@ -10,6 +10,30 @@
       font-family: "Arial", sans-serif;
       background-color: #f9f9f9;
       color: #333;
+    }
+
+    header {
+      background-color: #ef84b3;
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #logo img {
+      height: 50px;
+    }
+
+    #header-icons a:last-child {
+      margin-left: 0;
+    }
+
+    h1 {
+      color: #fff;
+      font-size: 36px;
+      margin-bottom: 20px;
+      text-align: center;
     }
 
     .container {
@@ -55,31 +79,38 @@
       color: #ef84b3;
       text-decoration: none;
     }
+
+    .error {
+      color: red;
+    }
   </style>
   <script>
     function login() {
       var username = document.getElementById("username").value;
       var password = document.getElementById("password").value;
-
-      // for demonstration,assuming successful login
-      if (username === "florance123@gmail.com" && password === "12345") {
-        // it will redirect it to the main index.html page
-        window.location.href = "./shop/index.html";
-      } else {
-        // Error message displays if entered wrong details
-        alert("Invalid username or password. Please try again.");
-      }
+      alert("Login:\nUsername: " + username + "\nPassword: " + password);
     }
   </script>
 </head>
 <body>
+  <header>
+    <div id="logo">
+      <img src="logo.png" alt="Logo">
+    </div>
+    <div id="header-icons">
+        <a href="login.html">Log in</a>
+    </div>
+  </header>
+
   <div class="container">
-    <h2>Login</h2>
-    <form onsubmit="event.preventDefault(); login();">
-      <input type="text" id="username" placeholder="Username" required>
-      <input type="password" id="password" placeholder="Password" required>
-      <input type="submit" value="Log in">
+    <h2>Sign Up</h2>
+    <form method="POST" action="signup_login.php" onsubmit="event.preventDefault(); signUp();">
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+      <input type="submit" value="Sign Up">
     </form>
+    <p>Already have an account? <a href="login.html">Log in</a>
     <p><a href="forgot_password.html">Forgot Password?</a></p>
   </div>
 </body>

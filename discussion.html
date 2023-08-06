@@ -8,6 +8,8 @@
       }
     </style>
     <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+    <script src="admin_discussions.js"></script>
   </head>
 
   <body>
@@ -15,18 +17,20 @@
       <i class="fa fa-shopping-cart" style="font-size: 40px"></i>
       <i class="fa fa-search" style="font-size: 36px"></i>
     </div>
-
+    
     <header id="header">
-      <div id="logo"><img src="logo.png" alt="Logo"></div>
+      <div id="logo"><img src="logo2.png" alt="Logo"></div>
     </header>
 
     <nav id="navigation">
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="shopping.html" >Shopping</a></li>
+        <li><a href="Equipments.html">Equipments</a></li>
         <li><a href="discussion.html">Discussion</a></li>
         <li><a href="account.html">Account</a></li>
-        <li><a href="#">About Us</a></li>
+        <li><a href="About.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
       </ul>
     </nav>
 
@@ -46,7 +50,7 @@
           </h2>
           <p class="post-author">Posted by: Pruthviraj Mariwad</p>
         </div>
-        <div class="post-content">
+        <div class="post-content" id="postContent1">
           <p>
             I am writing to inquire about the various types of flowers and money
             plants available at your nursery/garden center. As an avid gardener,
@@ -64,23 +68,23 @@
             plants, and are they based on size or variety?
           </p>
         </div>
-        <button class="post-button">Post a Reply</button>
+        <button class="post-button" onclick="sendPostToAdminPanel(1)">Post a Reply</button>
       </div>
 
-      <!-- Add more discussion posts here -->
+      <!-- Will Add more discussion posts here -->
 
       <div class="post">
         <div class="post-header">
           <h2 class="post-title">Discussion Title</h2>
           <p class="post-author">Posted by: Justin Trudeau</p>
         </div>
-        <div class="post-content">
+        <div class="post-content" id="postContent1">
           <p>This is another discussion post.</p>
         </div>
-        <button class="post-button">Post a Reply</button>
+        <button class="post-button" onclick="sendPostToAdminPanel(2)">Post a Reply</button> 
       </div>
 
-      <!-- Add more discussion posts here -->
+      <!-- Will Add more discussion posts here -->
     </div>
 
     <form id="post-form" action="#" method="post">
@@ -89,13 +93,13 @@
       <input type="text" id="title" name="title" required />
       <label for="author">Author:</label>
       <input type="text" id="author" name="author" required />
-      <label for="content">Content:</label>
-      <textarea id="content" name="content" rows="4" required></textarea>
+      <label for="contentInput">Content:</label>
+      <textarea id="contentInput" name="content" rows="4" required></textarea>
       <button type="submit">Post</button>
-    </form>
+    </form>    
     <footer>
       <p>&copy; 2023 Florence Shop. All rights reserved.</p>
     </footer>
-    <script src="script.js"></script>
+
   </body>
 </html>
