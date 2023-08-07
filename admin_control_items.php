@@ -24,19 +24,8 @@
 
   <?php
     // Database connection credentials
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "florance";
+       include("florance_database.php");
 
-
-    // Create a new database connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check the connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
 
     // Fetch all items from the database
     $sql = "SELECT * FROM items";
