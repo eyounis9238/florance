@@ -1,7 +1,7 @@
 <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
+    $servername = "db4free.net:3306/florance";
+    $username = "florance";
+    $password = "Portal@123";
     $dbname = "florance";
 
     // Create a new database connection
