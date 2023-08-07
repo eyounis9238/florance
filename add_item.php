@@ -10,18 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $categoryID = $_POST['category_id'];
 
     // Database connection credentials
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "florance";
+       include("florance_database.php");
 
-    // Create a new database connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check the connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
 
     // Insert the new item into the database
     $sql = "INSERT INTO items (item_name, item_image, item_price, user_id, quantity, category_id)
