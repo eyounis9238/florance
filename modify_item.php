@@ -3,19 +3,8 @@
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["itemId"]) && isset($_POST["itemName"]) && isset($_POST["itemPrice"])) {
     // Database connection credentials
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "florance";
+       include("florance_database.php");
 
-
-    // Create a new database connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check the connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
 
     // Prepare and execute the update query
     $sql = "UPDATE items SET item_name = ?, item_price = ? WHERE item_id = ?";
