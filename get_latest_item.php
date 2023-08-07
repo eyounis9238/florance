@@ -1,17 +1,7 @@
 <?php
 // Database connection credentials
-$servername = "localhost";
-$username = "floranceAdmin";
-$password = "eman90";
-$dbname = "florance";
+    include("florance_database.php");
 
-// Create a new database connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check the connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
 // Retrieve all items from the database
 $sql = "SELECT * FROM items ORDER BY item_id DESC";
