@@ -3,18 +3,8 @@
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["itemId"])) {
     // Database connection credentials
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "florance";
+       include("florance_database.php");
 
-    // Create a new database connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check the connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
 
     // Prepare and execute the delete query
     $sql = "DELETE FROM items WHERE item_id = ?";
