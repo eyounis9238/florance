@@ -1,0 +1,79 @@
+/* Reset some default styles */
+body, h1, h2, h3, p, ul, li, form {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+#header {
+    text-align: center;
+    padding: 20px;
+    background-color:  #ef84b3;
+    color: #fff;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    background-color:  #ef84b3;
+    padding: 10px 0;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+#registrationForm {
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.field {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px; /* Increased spacing between containers */
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+.email {
+    /* You can add specific styles for email input if needed */
+}
+
+button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #ef84b3; /* Pink color for the submit button */
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color:  #ef84b3; /* Darker pink on hover */
+}
+
+.hidden {
+    display: none;
+}

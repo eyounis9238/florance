@@ -1,0 +1,12 @@
+.error {
+	border-color:  red;
+}
+
+#emailError {
+	color: red;
+	padding-left: 5px;
+}
+
+.hidden {
+	display: none;
+}
