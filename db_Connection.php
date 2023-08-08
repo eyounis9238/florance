@@ -1,8 +1,8 @@
 <?php
-$host = 'localhost';
-$username = 'pm';
-$password = '123456';
-$dbName = 'florence';
+$host = 'db4free.net:3306/florance';
+$username = 'florance';
+$password = 'Portal@123';
+$dbName = 'florance';
 
 function saveFeedbackToDatabase($name, $email, $cellNumber, $feedback)
 {
@@ -20,7 +20,7 @@ function saveFeedbackToDatabase($name, $email, $cellNumber, $feedback)
     //$rating = $conn->real_escape_string($rating);
     $feedback = $conn->real_escape_string($feedback);
 
-    $sql = "INSERT INTO contact (name, email, cell_number, feedback) VALUES ('$name', '$email', '$cellNumber', '$feedback')";
+    $sql = "INSERT INTO tblContact_us (name, email, cell_number, feedback) VALUES ('$name', '$email', '$cellNumber', '$feedback')";
 
     if ($conn->query($sql) === TRUE) {
 
