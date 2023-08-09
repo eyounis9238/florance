@@ -4,8 +4,13 @@
     $error = null;
     if(!empty($_GET['id'])){
         $id = $_GET['id'];
-    } else {
-        $id = null;
+        $_SESSION['id']=$_GET['id'];
+    } else if(isset($_SESSION['id'])) {
+        $id = $_SESSION['id'];
+        $error = "<p> Error! Discussion ID not found.";
+    }
+    else{
+      $id = null;
         $error = "<p> Error! Discussion ID not found.";
     }
     $query = "SELECT * from tblComments WHERE sourceID = '$id';";
