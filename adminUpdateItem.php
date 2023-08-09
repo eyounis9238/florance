@@ -21,37 +21,32 @@
         $price = null;
         $errors[] = "<p> Price is required!!</p>";
     }
-    // if(!empty($_POST['phone'])){
-    //     $phone = $_POST['phone'];  
-    // } else {
-    //     $phone = null;
-    //     $errors[] = "<p> Phone is required!!</p>";
-    // }
-    // if(!empty($_POST['province'])){
-    //     $province = $_POST['province'];  
-    // } else {
-    //     $province = null;
-    //     $errors[] = "<p> Province is required!!</p>";
-    // }
+    if(!empty($_POST['quantity'])){
+        $quantity = $_POST['quantity'];  
+    } else {
+        $quantity = null;
+        $errors[] = "<p> Quantity is required!!</p>";
+    }
 
     if(count($errors) == 0){
         
         $item_id_clean = prepare_string($dbc, $item_id);
         $name_clean = prepare_string($dbc, $name);
         $price_clean = prepare_string($dbc, $price);
-        // $phone_clean = prepare_string($dbc, $phone);
-        // $province_clean = prepare_string($dbc, $province);
+        $quantity_clean = prepare_string($dbc, $quantity);
         
-        $query = "UPDATE tblItems SET `name` = ?, price = ? WHERE  item_id = ?;";
+        $query = "UPDATE items SET `item_name` = ?, item_price = ?, quantity = ? WHERE  item_id = ?;";
         
         $stmt = mysqli_prepare($dbc, $query);
         
         mysqli_stmt_bind_param(
             $stmt,
-            'sss',
+            'ssss',
             $name_clean,
             $price_clean,
+            $quantity_clean,
             $item_id_clean
+            
         );
         
         $result = mysqli_stmt_execute($stmt);

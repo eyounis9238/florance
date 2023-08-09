@@ -1,7 +1,7 @@
 <?php
     require('db_conn.php');
 
-    $query = 'SELECT d.discussionID,d.title,d.author,d.content,d.approved,COUNT(c.commentID) total FROM tblDiscussion d INNER join tblComments c ON d.discussionID=c.sourceID GROUP BY d.discussionID;';
+    $query = 'SELECT d.id,d.title,d.author,d.content,d.approved,COUNT(c.commentID) total,sum(Case when c.status=0 then 1 ELSE 0 END) NotApprovedNo,sum(Case when c.status=1 then 1 ELSE 0 END) ApprovedNo FROM tblDiscussion d LEFT join tblComments c ON d.id=c.sourceID GROUP BY d.id;';
     $results = @mysqli_query($dbc,$query);
 ?>
 
@@ -170,7 +170,7 @@
         <li><a href="userDetails.php">Users</a></li>
         <li><a href="AdminItemsList.php" >Items</a></li>
         <li><a href="AdminDiscussions.php">Discussions</a></li>
-        <li><a href="AdminOrders.html">Orders</a></li>
+        <li><a href="AdminOrdersList.php">Orders</a></li>
         <li><a href="adminFeedback.php">Feedback</a></li>
       </ul>
     </nav>
@@ -188,6 +188,8 @@
                 <th>Title</th>
                 <th>Discussion</th>
                 <th>Total Comments</th>
+                <th>Total NA Comments</th>
+                <th>Total Approved Comments</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -195,16 +197,18 @@
             <?php
                 while($row = mysqli_fetch_array($results, MYSQLI_ASSOC)){
                     $str_to_print = "";
-                    $str_to_print = "<tr> <td>{$row['discussionID']}</td>";
+                    $str_to_print = "<tr> <td>{$row['id']}</td>";
                     $str_to_print .= "<td> {$row['title']}</td>";
-                    $str_to_print .= "<td> {$row['title']}</td>";
+                    $str_to_print .= "<td> ".substr($row['content'],0,25)."...</td>";
                     $str_to_print .= "<td> {$row['total']}</td>";
+                    $str_to_print .= "<td> {$row['NotApprovedNo']}</td>";
+                    $str_to_print .= "<td> {$row['ApprovedNo']}</td>";
                     if($row['approved']==1){
                     $str_to_print .= "<td> <a
-                     href='adminEditDiscussion.php?discussionID={$row['discussionID']}'>Details</a>|<a class='delete' href='changeUserStatus.php?discussionID={$row['discussionID']}&status={$row['approved']}'>Disapprove</a> | <a class='delete' href='deleteUser.php?discussionID={$row['discussionID']}'>Delete</a></tr>";
+                     href='adminEditDiscussion.php?id={$row['id']}'>Details</a>|<a class='delete' href='adminChangeDiscussionStatus.php?id={$row['id']}&status={$row['approved']}'>Disapprove</a>|<a class='delete' href='adminComments.php?id={$row['id']}'>Comments</a>";
                 }else if($row['approved']==0)
                 {
-                    $str_to_print .= "<td> <a href='editUsers.php?discussionID={$row['discussionID']}'>Details</a>|<a class='delete' href='changeUserStatus.php?discussionID={$row['discussionID']}&status={$row['active']}'>Approve</a> | <a href='deleteuser.php?discussionID={$row['discussionID']}&status={$row['approved']}'>Delete</a></tr>";
+                    $str_to_print .= "<td> <a href='adminEditDiscussion.php?id={$row['id']}'>Details</a>|<a class='delete' href='adminChangeDiscussionStatus.php?id={$row['id']}&status={$row['approved']}'>Approve</a>|<a class='delete' href='adminComments.php?id={$row['id']}'>Comments</a>|<a class='delete' href='adminChangeDiscussionStatus.php?id={$row['id']}'>Comments</a>";
                 }
                     echo $str_to_print;
                 }

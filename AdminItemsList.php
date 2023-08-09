@@ -1,7 +1,9 @@
 <?php
     require('db_conn.php');
 
-    $query = 'SELECT * FROM tblItems';
+    $query = 'SELECT i.item_id,i.item_name,i.item_price,i.quantity,i.category_id,u.firstname,u.lastname,i.approved FROM `items` i
+    JOIN tblUsers u
+    WHERE i.user_id=u.user_id';
     $results = @mysqli_query($dbc,$query);
 ?>
 
@@ -170,7 +172,7 @@
         <li><a href="userDetails.php">Users</a></li>
         <li><a href="AdminItemsList.php" >Items</a></li>
         <li><a href="AdminDiscussions.php">Discussions</a></li>
-        <li><a href="AdminOrders.html">Orders</a></li>
+        <li><a href="AdminOrdersList.php">Orders</a></li>
         <li><a href="adminFeedback.php">Feedback</a></li>
       </ul>
     </nav>
@@ -187,6 +189,8 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Price</th>
+                <th>User</th>
+                <th>Quantity</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -195,14 +199,16 @@
                 while($row = mysqli_fetch_array($results, MYSQLI_ASSOC)){
                     $str_to_print = "";
                     $str_to_print = "<tr> <td>{$row['item_id']}</td>";
-                    $str_to_print .= "<td> {$row['name']}</td>";
-                    $str_to_print .= "<td> CAD  $ {$row['price']}</td>";
+                    $str_to_print .= "<td> {$row['item_name']}</td>";
+                    $str_to_print .= "<td>{$row['item_price']}</td>";
+                    $str_to_print .= "<td>{$row['firstname']} {$row['lastname']}</td>";
+                    $str_to_print .= "<td>{$row['quantity']}</td>";
                     if($row['approved']==1){
                     $str_to_print .= "<td> <a
                      href='adminEditItems.php?item_id={$row['item_id']}'>Details</a>|<a class='delete' href='adminchangeItemStatus.php?item_id={$row['item_id']}&status={$row['approved']}'>Disapprove</a></tr>";
                 }else if($row['approved']==0)
                 {
-                    $str_to_print .= "<td> <a href='adminEditItems.php?item_id={$row['item_id']}'>Details</a>|<a class='delete' href='adminchangeItemStatus.php?item_id={$row['item_id']}&status={$row['approved']}'>Approve</a></tr>";
+                    $str_to_print .= "<td> <a href='adminEditItems.php?item_id={$row['item_id']}'>Details</a>|<a class='delete' href='adminchangeItemStatus.php?item_id={$row['item_id']} & status={$row['approved']}'>Approve</a></tr>";
                 }
                     echo $str_to_print;
                 }

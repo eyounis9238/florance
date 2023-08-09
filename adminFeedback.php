@@ -170,7 +170,7 @@
         <li><a href="userDetails.html">Users</a></li>
         <li><a href="AdminItemsList.php" >Items</a></li>
         <li><a href="AdminDiscussions.php">Discussions</a></li>
-        <li><a href="AdminOrders.html">Orders</a></li>
+        <li><a href="AdminOrdersList.php">Orders</a></li>
         <li><a href="adminFeedback.php">Feedback</a></li>
       </ul>
     </nav>
@@ -180,7 +180,7 @@
     </div>
 
     <main>
-      <h2>Users List</h2>
+      <h2>Feedback List</h2>
       <table id="myTable"class="cell-border" cellspacing="0" width="90%" class="display">
         <thead>
             <tr align="left">
@@ -195,9 +195,10 @@
                 while($row = mysqli_fetch_array($results, MYSQLI_ASSOC)){
                     $str_to_print = "";
                     $str_to_print = "<tr> <td>{$row['feedbackID']}</td>";
-                    $str_to_print .= "<td> {$row['firstname']}</td>";
-                    $str_to_print .= "<td> {$row['email']}</td>";
+                    $str_to_print .= "<td> {$row['name']}</td>";
+                    $str_to_print.="<td><a href='mailto':{$row['email']}''>{$row['email']}</a></td>";
                     $str_to_print .= "<td> {$row['comment']}</td>";
+                    echo $str_to_print;
                 }
                     // $str_to_print .= "<td> {$row['Province']}</td>";
                 //     if($row['active']==1){
@@ -207,7 +208,7 @@
                 // {
                 //     $str_to_print .= "<td> <a href='editUsers.php?user_id={$row['user_id']}'>Details</a>|<a class='delete' href='changeUserStatus.php?user_id={$row['user_id']}&status={$row['active']}'>Approve</a></tr>";
                 // }
-                    echo $str_to_print;
+                    
                 //}
             ?>
         </tbody>

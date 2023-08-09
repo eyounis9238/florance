@@ -167,10 +167,10 @@
 
     <nav id="navigation">
       <ul>
-        <li><a href="userDetails.html">Users</a></li>
+        <li><a href="userDetails.php">Users</a></li>
         <li><a href="AdminItemsList.php" >Items</a></li>
         <li><a href="AdminDiscussions.php">Discussions</a></li>
-        <li><a href="AdminOrders.html">Orders</a></li>
+        <li><a href="AdminOrdersList.php">Orders</a></li>
         <li><a href="adminFeedback.php">Feedback</a></li>
       </ul>
     </nav>
@@ -188,6 +188,7 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone</th>
+                <th>User Type</th>
                 <th>Province</th>
                 <th>Actions</th>
             </tr>
@@ -200,6 +201,7 @@
                     $str_to_print .= "<td> {$row['firstname']}</td>";
                     $str_to_print .= "<td> {$row['email']}</td>";
                     $str_to_print .= "<td> {$row['phone']}</td>";
+                    $str_to_print .= "<td> {$row['userType']}</td>";
                     $str_to_print .= "<td> {$row['Province']}</td>";
                     if($row['active']==1){
                     $str_to_print .= "<td> <a

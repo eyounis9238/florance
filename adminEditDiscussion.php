@@ -2,15 +2,15 @@
     require('db_conn.php');
 
     $error = null;
-    if(!empty($_GET['discussionID'])){
-        $discussionID = $_GET['discussionID'];
+    if(!empty($_GET['id'])){
+        $id = $_GET['id'];
     } else {
-        $discussionID = null;
+        $id = null;
         $error = "<p> Error! Discussion ID not found.";
     }
 
     if($error == null){
-        $query = "SELECT * FROM tblDiscussion WHERE discussionID = $discussionID;"; // replace with paramertized query using mysqli_stmt_bind_param
+        $query = "SELECT * FROM tblDiscussion WHERE id = '$id';"; // replace with paramertized query using mysqli_stmt_bind_param
         $result = @mysqli_query($dbc, $query);
         
         if(mysqli_num_rows($result) == 1){
@@ -185,23 +185,24 @@
 
     <nav id="navigation">
       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="shopping.html" >Shopping</a></li>
-        <li><a href="discussion.html">Discussion</a></li>
-        <li><a href="account.html">Account</a></li>
-        <li><a href="About Us page.html">About Us</a></li>
+        <li><a href="userDetails.html">Users</a></li>
+        <li><a href="AdminItemsList.php" >Items</a></li>
+        <li><a href="AdminDiscussions.php">Discussions</a></li>
+        <li><a href="AdminOrdersList.php">Orders</a></li>
+        <li><a href="adminFeedback.php">Feedback</a></li>
       </ul>
     </nav>
 
     <div id="content">
       <h1>Welcome to Florence Shop</h1>
     </div>
+    <div class="form-style-6">
     <form action="adminUpdateDiscussion.php" method="post" >
             <!-- <div>
                 <label for="user_id">User ID : </label>
                 <input type="text" id="user_id" name="user_id" value="<?php echo $user_id; ?>"/>
             </div> -->
-            <input type="hidden" id="discussionID" name="discussionID" value="<?php echo $discussionID; ?>">
+            <input type="hidden" id="id" name="id" value="<?php echo $id; ?>">
             <div>
                 <label for="name">Title : </label>
                 <input type="text" id="title" name="title" value="<?php echo $title; ?>"/>
@@ -210,16 +211,10 @@
                 <label for="content">Post Text : </label>
                 <input type="text" id="content" name="content" value="<?php echo $content; ?>"/>
             </div>
-            <!-- <div>
-                <label for="phone">Phone : </label>
-                <input type="text" id="phone" name="phone" value="<?php echo $phone; ?>"/>
-            </div>
-            <div>
-                <label for="province">Province : </label>
-                <input type="text" id="province" name="province" value="<?php echo $province; ?>"/>
-            </div> -->
+    
             <button type="submit">Update Data</button>
         </form>
+        </div>
     <footer>
       <p>&copy; 2023 Florence Shop. All rights reserved.</p>
     </footer>

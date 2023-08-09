@@ -4,7 +4,10 @@
     $error = null;
     if(!empty($_GET['user_id'])){
         $user_id = $_GET['user_id'];
-    } else if(!empty($_GET['status'])) {
+    } else{
+        $error = "<p>Error! User Id or Status not found.</p>";
+    }
+     if(!empty($_GET['status'])) {
         $status = $_GET['status'];
         
     }else{

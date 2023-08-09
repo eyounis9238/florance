@@ -170,6 +170,7 @@
       footer p {
         margin: 0;
       }
+
     </style>
   </head>
   <body>
@@ -187,17 +188,18 @@
 
     <nav id="navigation">
       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="shopping.html" >Shopping</a></li>
-        <li><a href="discussion.html">Discussion</a></li>
-        <li><a href="account.html">Account</a></li>
-        <li><a href="About Us page.html">About Us</a></li>
+        <li><a href="userDetails.html">Users</a></li>
+        <li><a href="AdminItemsList.php" >Items</a></li>
+        <li><a href="AdminDiscussions.php">Discussions</a></li>
+        <li><a href="AdminOrdersList.php">Orders</a></li>
+        <li><a href="adminFeedback.php">Feedback</a></li>
       </ul>
     </nav>
 
     <div id="content">
       <h1>Welcome to Florence Shop</h1>
     </div>
+    <div class="form-style-6">
     <form action="updateUser.php" method="post" >
             <!-- <div>
                 <label for="user_id">User ID : </label>
@@ -222,6 +224,7 @@
             </div>
             <button type="submit">Update Data</button>
         </form>
+        </div>
     <footer>
       <p>&copy; 2023 Florence Shop. All rights reserved.</p>
     </footer>

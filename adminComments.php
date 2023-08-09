@@ -2,27 +2,14 @@
     require('db_conn.php');
 
     $error = null;
-    if(!empty($_GET['item_id'])){
-        $item_id = $_GET['item_id'];
+    if(!empty($_GET['id'])){
+        $id = $_GET['id'];
     } else {
-        $item_id = null;
-        $error = "<p> Error! Item Id not found.";
+        $id = null;
+        $error = "<p> Error! Discussion ID not found.";
     }
-
-    if($error == null){
-        $query = "SELECT i.item_id,i.item_name,i.item_price,i.quantity,i.category_id,i.approved FROM `items` i
-         where item_id= $item_id;"; // replace with paramertized query using mysqli_stmt_bind_param
-        $result = @mysqli_query($dbc, $query);
-        
-        if(mysqli_num_rows($result) == 1){
-            $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-            $name = $row['item_name'];
-            $price = $row['item_price'];
-            $Quantity = $row['quantity'];
-        } // else-> inccorect entry in db
-    } else {
-        echo $error;
-    }
+    $query = "SELECT * from tblComments WHERE sourceID = '$id';";
+    $results = @mysqli_query($dbc,$query);
 ?>
 
 <!DOCTYPE html>
@@ -187,10 +174,10 @@
 
     <nav id="navigation">
       <ul>
-        <li><a href="userDetails.html">Users</a></li>
+        <li><a href="userDetails.php">Users</a></li>
         <li><a href="AdminItemsList.php" >Items</a></li>
         <li><a href="AdminDiscussions.php">Discussions</a></li>
-        <li><a href="AdminOrdersList.php">Orders</a></li>
+        <li><a href="AdminOrders.html">Orders</a></li>
         <li><a href="adminFeedback.php">Feedback</a></li>
       </ul>
     </nav>
@@ -198,25 +185,51 @@
     <div id="content">
       <h1>Welcome to Florence Shop</h1>
     </div>
-    <div class="form-style-6">
-    <form action="adminUpdateItem.php" method="post" >
 
-            <input type="hidden" id="item_id" name="item_id" value="<?php echo $item_id; ?>">
-            <div>
-                <label for="name">Name : </label>
-                <input type="text" id="name" name="name" value="<?php echo $name; ?>"/>
-            </div>
-            <div>
-                <label for="price">Price : </label>
-                <input type="text" id="price" name="price" value="<?php echo $price; ?>"/>
-            </div>
-            <div>
-                <label for="quantity">Quantity : </label>
-                <input type="text" id="quantity" name="quantity" value="<?php echo $Quantity; ?>"/>
-            </div>
-            <button type="submit">Update Item</button>
-        </form>
-        </div>
+    <main>
+      <h2>Discussion List</h2>
+      <table id="myTable"class="cell-border" cellspacing="0" width="90%" class="display">
+        <thead>
+            <tr align="left">
+                <th>ID</th>
+                <th>Comment</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+                while($row = mysqli_fetch_array($results, MYSQLI_ASSOC)){
+                    $str_to_print = "";
+                    $str_to_print = "<tr> <td>{$row['commentID']}</td>";
+                    $str_to_print .= "<td> {$row['commentText']}</td>";
+                    if($row['status']==1){
+                    $str_to_print .= "<td><a class='delete' href='adminChangeCommentStatus.php?id={$row['commentID']}&status={$row['status']}'>Disapprove</a>";
+                }else if($row['status']==0)
+                {
+                    $str_to_print .= "<td><a class='delete' href='adminChangeCommentStatus.php?id={$row['commentID']}&status={$row['status']}'>Approve</a>";
+                }
+                    echo $str_to_print;
+                }
+            ?>
+        </tbody>
+    </table>
+    </main>
+    <script>
+        $(document).ready(function () {
+            if($('#myTable').length==1){
+                //alert("This is an alert message!");
+                $('#myTable').DataTable()
+            }
+//             $('.delete').click(function() {
+            
+//     if (confirm('Are you sure?')) {
+      
+//         var url = $(this).attr('href');
+//         $('#content').load(url);
+//     }
+//   });
+        });
+    </script>
     <footer>
       <p>&copy; 2023 Florence Shop. All rights reserved.</p>
     </footer>
