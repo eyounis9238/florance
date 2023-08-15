@@ -1,3 +1,17 @@
+<?php
+// Check if user is logged in and display appropriate icon
+session_start();
+if (isset($_SESSION["user_id"]) && isset($_SESSION["user_type"])) {
+    if ($_SESSION["user_type"] === "admin") {
+        $iconLink = "admin_panel.php";
+    } else {
+        $iconLink = "home_page.php";
+    }
+} else {
+    $iconLink = "register.php";
+}
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -145,9 +159,9 @@
       <div class="icon">
         <a href="cart.html"><i class="fa fa-shopping-cart" style="font-size: 40px; color: white;"></i></a>
         <a href="search.html"><i class="fa fa-search" style="font-size: 36px; color: white;"></i></a>
-        <a href="login.html"><i class="fa fa-user-o" style="font-size: 36px; color: white;"></i></a>
-  
+        <a href="register.php"><i class="fa fa-user-o" style="font-size: 36px; color: white;"></i></a>
       </div>
+
 
     <header id="header">
       <div id="logo"><img src="logo.png" alt="Logo"></div>
@@ -157,9 +171,12 @@
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="shopping.html" >Shopping</a></li>
-        <li><a href="discussion.html">Discussion</a></li>
+        <li><a href="flowers.html" >Flowers</a></li>
+        <li><a href="Equipments.html" >Equipments</a></li>
+        <li><a href="discussion.php">Discussion</a></li>
         <li><a href="account.html">Account</a></li>
-        <li><a href="About Us page.html">About Us</a></li>
+        <li><a href="About.html">About Us</a></li>
+        <li><a href="contact.php">Contact Us</a></li>
       </ul>
     </nav>
 
