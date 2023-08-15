@@ -9,16 +9,11 @@
 
 
 <div class="icon">
-      <a href="cart.html"
-        ><i class="fa fa-shopping-cart" style="font-size: 40px; color: white;"></i></a
-      >
-      <a href="search.html"
-        ><i class="fa fa-search" style="font-size: 36px; color: white;"></i></a
-      >
-      <a href="login.html"
-        ><i class="fa fa-user-o" style="font-size: 36px; color: white;"></i></a
-      >
-    </div>
+        <a href="cart.html"><i class="fa fa-shopping-cart" style="font-size: 40px; color: white;"></i></a>
+        <a href="search.html"><i class="fa fa-search" style="font-size: 36px; color: white;"></i></a>
+        <a href="register.php"><i class="fa fa-user-o" style="font-size: 36px; color: white;"></i></a>
+      </div>
+
 
     <header id="header">
       <div id="logo"><img src="logo2.png" alt="Logo" /></div>
@@ -26,13 +21,14 @@
 
     <nav id="navigation">
       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="shopping.html">Shopping</a></li>
-        <li><a href="Equipments.html">Equipments</a></li>
-        <li><a href="discussion.html">Discussion</a></li>
+      <li><a href="index.html">Home</a></li>
+        <li><a href="shopping.html" >Shopping</a></li>
+        <li><a href="flowers.html" >Flowers</a></li>
+        <li><a href="Equipments.html" >Equipments</a></li>
+        <li><a href="discussion.php">Discussion</a></li>
         <li><a href="account.html">Account</a></li>
         <li><a href="About.html">About Us</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="contact.php">Contact Us</a></li>
       </ul>
     </nav>
 
@@ -68,11 +64,11 @@
             </div>
         </form>
 
-        <form action="display_feedback.php" method="post">
+        <!--<form action="display_feedback.php" method="post">
             <div>
                 <input type="submit" value="Display All Feedbacks">
             </div>
-        </form>
+        </form>-->
 
     </div>
 </body>
