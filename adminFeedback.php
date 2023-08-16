@@ -167,7 +167,7 @@
 
     <nav id="navigation">
       <ul>
-        <li><a href="userDetails.html">Users</a></li>
+        <li><a href="userDetails.php">Users</a></li>
         <li><a href="AdminItemsList.php" >Items</a></li>
         <li><a href="AdminDiscussions.php">Discussions</a></li>
         <li><a href="AdminOrdersList.php">Orders</a></li>
